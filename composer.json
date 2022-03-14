@@ -1,0 +1,24 @@
+{
+    "name": "falbar/trait-adapter",
+    "description": "Trait help to adapt data.",
+    "keywords": [
+        "php",
+        "mapping",
+        "adapter",
+        "object",
+        "array"
+    ],
+    "homepage": "http://falbar.ru/",
+    "license": "MIT",
+    "require": {
+        "php": "^7.4",
+        "ext-json": "*",
+        "illuminate/container": "^7.0",
+        "dusank/knapsack": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Falbar\\TraitAdapter\\": "src"
+        }
+    }
+}
