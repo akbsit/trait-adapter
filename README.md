@@ -15,6 +15,16 @@ composer require falbar/trait-adapter
 
 > set<PropertyName>Attribute() метод должен быть `protected` и возвращать `void`
 
+## Примеры инициализации объекта
+
+```php
+$oExampleAdapter = ExampleAdapter::make();
+```
+
+```php
+$oExampleAdapter = new ExampleAdapter();
+```
+
 ## Примеры использования
 
 1. Обертка в Adapter объект:
