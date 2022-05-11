@@ -1,21 +1,20 @@
 # trait-adapter, [Packagist](https://packagist.org/packages/falbar/trait-adapter)
 
-## Установка
+## Install
 
-Для установки пакета нужно:
+To install package, you need run command:
 
 ```bash
 composer require falbar/trait-adapter
 ```
 
-## Подключение
+## Usage
 
-Для создания класса Adapter, необходимо в начале подключить трейт `AdapterTrait`. Далее определить
-свойство `protected array $arMappingList`, где обозначаются соответствия полей (оно может быть `= [];`).
+To create Adapter class, it is necessary to connect trait at the beginning `AdapterTrait`. Next, define the property `protected array $arMappingList`, where are the field correspondences denoted (it can be `= [];`).
 
 > set<PropertyName>Attribute() метод должен быть `protected` и возвращать `void`
 
-## Примеры инициализации объекта
+## Examples object initialization
 
 ```php
 $oExampleAdapter = ExampleAdapter::make();
@@ -25,9 +24,9 @@ $oExampleAdapter = ExampleAdapter::make();
 $oExampleAdapter = new ExampleAdapter();
 ```
 
-## Примеры использования
+## Examples
 
-1. Обертка в Adapter объект:
+1. Wrapper Adapter object:
 
 ```php
 <?php namespace App\Classes;
@@ -55,7 +54,7 @@ class ExampleAdapter
 }
 ```
 
-Преобразуем данные в объект Adapter:
+Converting data to Adapter object:
 
 ```php
 $oExampleAdapter = ExampleAdapter::make()
@@ -72,7 +71,7 @@ App\Classes\ExampleAdapter {
 }
 ```
 
-2. Преобразование свойств объекта:
+2. Converting object properties:
 
 ```php
 <?php namespace App\Classes;
@@ -106,7 +105,7 @@ class ExampleAdapter
 }
 ```
 
-Преобразуем данные в объект Adapter:
+Converting data to Adapter object:
 
 ```php
 $oExampleAdapter = ExampleAdapter::make()
@@ -123,7 +122,7 @@ App\Classes\ExampleAdapter {
 }
 ```
 
-3. Мэпим данные объекта:
+3. Mapping object data:
 
 ```php
 <?php namespace App\Classes;
@@ -151,7 +150,7 @@ class ExampleAdapter
 }
 ```
 
-Преобразуем данные в объект Adapter:
+Converting data to Adapter object:
 
 ```php
 $oExampleAdapter = ExampleAdapter::make()
@@ -168,7 +167,7 @@ App\Classes\ExampleAdapter {
 }
 ```
 
-4. Создание коллекции:
+4. Creating collection:
 
 ```php
 <?php namespace App\Classes;
@@ -196,7 +195,7 @@ class ExampleAdapter
 }
 ```
 
-Преобразуем данные в коллекцию Adapter:
+Converting data to the Adapter collection:
 
 ```php
 $oExampleAdapter = ExampleAdapter::make()
@@ -221,19 +220,19 @@ App\Classes\ExampleAdapter {
 }
 ```
 
-## Список методов
+## Methods
 
-#### Методы инициализации
+#### Initialization methods
 
-* `make()` - инициализация объекта;
-* `mapping(array $arMappingList = [])` - определение массива соответствий;
-* `setCustom(array $arCustomData = [])` - передача кастомных данных в класс Adapter;
-* `create(array $arData = [])` - создать объект Adapter;
-* `createCollection(array $arDataList = [])` - создать коллекцию Adapter;
-* `toArray()` - преобразовать в массив.
+* `make()` - initializing object;
+* `mapping(array $arMappingList = [])` - defining array of matches;
+* `setCustom(array $arCustomData = [])` - transferring custom data to the Adapter class;
+* `create(array $arData = [])` - create object Adapter;
+* `createCollection(array $arDataList = [])` - create collection Adapter;
+* `toArray()` - convert to an array.
 
-#### Внутри класса Adapter
+#### Inside the Adapter class
 
-* `getOrigin(?string $sKey = null)` - получить оригинальное значение в классе Adapter;
-* `getCustom(?string $sKey = null)` - получить кастомное значение в классе Adapter;
-* `getCustomByItemIndex(?string $sKey = null)` - получить кастомное значение по индексу в классе Adapter.
+* `getOrigin(?string $sKey = null)` - get original value in the Adapter class;
+* `getCustom(?string $sKey = null)` - get a custom value in the Adapter class;
+* `getCustomByItemIndex(?string $sKey = null)` - get a custom value by index in the Adapter class.

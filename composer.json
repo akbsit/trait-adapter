@@ -11,7 +11,7 @@
     "homepage": "http://falbar.ru/",
     "license": "MIT",
     "require": {
-        "php": "^7.4",
+        "php": "^7.4|^8.0",
         "ext-json": "*",
         "illuminate/container": "^7.0",
         "dusank/knapsack": "^10.0"
