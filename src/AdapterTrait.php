@@ -7,28 +7,17 @@ use Falbar\TraitAdapter\Helper\ContainerHelper;
 use function DusanKasan\Knapsack\getOrDefault;
 use DusanKasan\Knapsack\Collection;
 
-/**
- * Class AdapterTrait
- * @package Falbar\TraitAdapter
- *
- * @property array $arMappingList
- */
+/* @property array $arMappingList */
 trait AdapterTrait
 {
     private array $arOriginData = [];
     private array $arCustomData = [];
 
-    /* @return static */
     public static function make(): self
     {
         return new static();
     }
 
-    /**
-     * @param array $arMappingList
-     *
-     * @return $this
-     */
     public function mapping(array $arMappingList = []): self
     {
         $this->arMappingList = $arMappingList;
@@ -36,11 +25,6 @@ trait AdapterTrait
         return $this;
     }
 
-    /**
-     * @param array $arCustomData
-     *
-     * @return $this
-     */
     public function setCustom(array $arCustomData = []): self
     {
         $this->arCustomData = $arCustomData;
@@ -48,11 +32,6 @@ trait AdapterTrait
         return $this;
     }
 
-    /**
-     * @param array $arData
-     *
-     * @return $this|null
-     */
     public function create(array $arData = []): ?self
     {
         $oData = Collection::from($arData);
@@ -88,11 +67,6 @@ trait AdapterTrait
         return $this;
     }
 
-    /**
-     * @param array $arDataList
-     *
-     * @return $this|null
-     */
     public function createCollection(array $arDataList = []): ?self
     {
         if (empty($arDataList)) {
@@ -118,7 +92,6 @@ trait AdapterTrait
         return $this;
     }
 
-    /* @return array */
     public function toArray(): array
     {
         if (property_exists($this, 'arCollection')) {
@@ -128,12 +101,7 @@ trait AdapterTrait
         return $this->objectToAdapterArray($this);
     }
 
-    /**
-     * @param string|null $sKey
-     *
-     * @return mixed
-     */
-    protected function getOrigin(?string $sKey = null)
+    protected function getOrigin(?string $sKey = null): mixed
     {
         if (empty($sKey)) {
             return $this->arOriginData;
@@ -142,12 +110,7 @@ trait AdapterTrait
         return getOrDefault($this->arOriginData, $sKey, null);
     }
 
-    /**
-     * @param string|null $sKey
-     *
-     * @return mixed
-     */
-    protected function getCustom(?string $sKey = null)
+    protected function getCustom(?string $sKey = null): mixed
     {
         if (empty($sKey)) {
             return $this->arCustomData;
@@ -156,12 +119,7 @@ trait AdapterTrait
         return getOrDefault($this->arCustomData, $sKey, null);
     }
 
-    /**
-     * @param string|null $sKey
-     *
-     * @return mixed
-     */
-    protected function getCustomByItemIndex(?string $sKey = null)
+    protected function getCustomByItemIndex(?string $sKey = null): mixed
     {
         if (empty($sKey)) {
             return null;
@@ -176,7 +134,6 @@ trait AdapterTrait
         return getOrDefault($arList, $iItemIndex, null);
     }
 
-    /* @return void */
     private function unsetAdapterProperty(): void
     {
         if (property_exists($this, 'arMappingList')) {
@@ -201,12 +158,7 @@ trait AdapterTrait
         }
     }
 
-    /**
-     * @param mixed $data
-     *
-     * @return array
-     */
-    private function objectToAdapterArray($data): array
+    private function objectToAdapterArray(mixed $data): array
     {
         if (empty($data)) {
             return [];
@@ -217,11 +169,6 @@ trait AdapterTrait
         return json_decode($sJsonEncode, true);
     }
 
-    /**
-     * @param string $sValue
-     *
-     * @return string
-     */
     private function studly(string $sValue): string
     {
         $sValue = ucwords(str_replace(['-', '_'], ' ', $sValue));

@@ -3,10 +3,6 @@
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Container\Container;
 
-/**
- * Class ContainerHelper
- * @package Falbar\TraitAdapter\Helper
- */
 class ContainerHelper
 {
     /**
