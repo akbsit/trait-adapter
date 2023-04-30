@@ -228,7 +228,7 @@ App\Classes\ExampleAdapter {
 * `mapping(array $arMappingList = [])` - defining array of matches;
 * `setCustom(array $arCustomData = [])` - transferring custom data to the Adapter class;
 * `create(array $arData = [])` - create object Adapter;
-* `createCollection(array $arDataList = [])` - create collection Adapter;
+* `createCollection(array $arDataList = [], int $iChunk = 500)` - create collection Adapter;
 * `toArray()` - convert to an array.
 
 #### Inside the Adapter class

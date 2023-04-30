@@ -3,8 +3,8 @@
 use ReflectionProperty;
 use ReflectionClass;
 
+use Falbar\TraitAdapter\Helper\CollectionHelper;
 use Falbar\TraitAdapter\Helper\ContainerHelper;
-use function DusanKasan\Knapsack\getOrDefault;
 use DusanKasan\Knapsack\Collection;
 
 /* @property array $arMappingList */
@@ -67,25 +67,31 @@ trait AdapterTrait
         return $this;
     }
 
-    public function createCollection(array $arDataList = []): ?self
+    public function createCollection(array $arDataList = [], int $iChunk = 500): ?self
     {
         if (empty($arDataList)) {
             return null;
         }
 
-        $oResult = Collection::from($arDataList)
-            ->map(function ($arData, $iIndex) use (&$arResult) {
-                $arCustomData = array_merge([
-                    'item-index' => $iIndex,
-                ], $this->getCustom());
+        foreach (array_chunk($arDataList, $iChunk) as $arDataItem) {
+            $oResult = Collection::from($arDataItem)
+                ->map(function ($arData, $iIndex) use (&$arResult) {
+                    $arCustomData = array_merge([
+                        'item-index' => $iIndex,
+                    ], $this->getCustom());
 
-                return ContainerHelper::make(static::class)
-                    ->setCustom($arCustomData)
-                    ->mapping($this->arMappingList)
-                    ->create($arData);
-            });
+                    return ContainerHelper::make(static::class)
+                        ->setCustom($arCustomData)
+                        ->mapping($this->arMappingList)
+                        ->create($arData);
+                });
+            if (empty($this->arCollection)) {
+                $this->arCollection = $oResult->toArray();
+            } else {
+                $this->arCollection = array_merge($this->arCollection, $oResult->toArray());
+            }
 
-        $this->arCollection = $oResult->toArray();
+        }
 
         $this->unsetAdapterProperty();
 
@@ -107,7 +113,7 @@ trait AdapterTrait
             return $this->arOriginData;
         }
 
-        return getOrDefault($this->arOriginData, $sKey, null);
+        return CollectionHelper::get($this->arOriginData, $sKey);
     }
 
     protected function getCustom(?string $sKey = null): mixed
@@ -116,7 +122,7 @@ trait AdapterTrait
             return $this->arCustomData;
         }
 
-        return getOrDefault($this->arCustomData, $sKey, null);
+        return CollectionHelper::get($this->arCustomData, $sKey);
     }
 
     protected function getCustomByItemIndex(?string $sKey = null): mixed
@@ -125,13 +131,14 @@ trait AdapterTrait
             return null;
         }
 
-        $arList = getOrDefault($this->arCustomData, $sKey, null);
+
+        $arList = CollectionHelper::get($this->arCustomData, $sKey);
         $iItemIndex = $this->getCustom('item-index');
         if (empty($arList) || (is_null($iItemIndex) && empty($iItemIndex)) || !is_int($iItemIndex)) {
             return null;
         }
 
-        return getOrDefault($arList, $iItemIndex, null);
+        return CollectionHelper::get($arList, $iItemIndex);
     }
 
     private function unsetAdapterProperty(): void
