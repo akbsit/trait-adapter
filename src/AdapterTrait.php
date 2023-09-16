@@ -1,10 +1,10 @@
-<?php namespace Falbar\TraitAdapter;
+<?php namespace Akbsit\TraitAdapter;
 
 use ReflectionProperty;
 use ReflectionClass;
 
-use Falbar\TraitAdapter\Helper\CollectionHelper;
-use Falbar\TraitAdapter\Helper\ContainerHelper;
+use Akbsit\TraitAdapter\Helper\CollectionHelper;
+use Akbsit\TraitAdapter\Helper\ContainerHelper;
 use DusanKasan\Knapsack\Collection;
 
 /* @property array $arMappingList */

@@ -1,4 +1,4 @@
-<?php namespace Falbar\TraitAdapter\Helper;
+<?php namespace Akbsit\TraitAdapter\Helper;
 
 use ArrayAccess;
 

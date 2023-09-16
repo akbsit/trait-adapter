@@ -1,11 +1,11 @@
-# trait-adapter, [Packagist](https://packagist.org/packages/falbar/trait-adapter)
+# trait-adapter, [Packagist](https://packagist.org/packages/akbsit/trait-adapter)
 
 ## Install
 
 To install package, you need run command:
 
 ```bash
-composer require falbar/trait-adapter
+composer require akbsit/trait-adapter
 ```
 
 ## Usage
@@ -31,7 +31,7 @@ $oExampleAdapter = new ExampleAdapter();
 ```php
 <?php namespace App\Classes;
 
-use Falbar\TraitAdapter\AdapterTrait;
+use Akbsit\TraitAdapter\AdapterTrait;
 
 /**
  * Class ExampleAdapter
@@ -76,7 +76,7 @@ App\Classes\ExampleAdapter {
 ```php
 <?php namespace App\Classes;
 
-use Falbar\TraitAdapter\AdapterTrait;
+use Akbsit\TraitAdapter\AdapterTrait;
 
 /**
  * Class ExampleAdapter
@@ -127,7 +127,7 @@ App\Classes\ExampleAdapter {
 ```php
 <?php namespace App\Classes;
 
-use Falbar\TraitAdapter\AdapterTrait;
+use Akbsit\TraitAdapter\AdapterTrait;
 
 /**
  * Class ExampleAdapter
@@ -172,7 +172,7 @@ App\Classes\ExampleAdapter {
 ```php
 <?php namespace App\Classes;
 
-use Falbar\TraitAdapter\AdapterTrait;
+use Akbsit\TraitAdapter\AdapterTrait;
 
 /**
  * Class ExampleAdapter
